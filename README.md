@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CampusGig — Production-Ready Student Freelance Marketplace
 
 CampusGig is a full-stack, database-driven student freelance marketplace built using the **MERN** stack (MongoDB, Express, React + Vite, Node.js). It enables university students to offer academic tutoring, programming assistance, design, and writing services while allowing clients to search, evaluate, and collaborate with verified student freelancers.
@@ -242,5 +243,10 @@ Endpoints to verify:
 - [x] Helmet security headers & explicit CORS allowlist
 - [x] Memory storage file uploads with MIME allowlist and size checks
 - [x] Zero hardcoded mock users, sample reviews, or fake marketplace listings
-#   m i n o r  
+#   m i n o r 
  
+ 
+=======
+# minor-project
+freelance services marketplace platform for students for tutoring,design etc
+>>>>>>> 59c1a25d429ae489337e4ca3ee891bd7653a29e0

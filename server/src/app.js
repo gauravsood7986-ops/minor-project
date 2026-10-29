@@ -37,29 +37,43 @@ app.use(
 );
 
 // CORS configuration with explicit origins and credentials
+
 const allowedOrigins = [
-  env.CLIENT_ORIGIN,
+  env.CLIENT_ORIGIN?.replace(/\/+$/, ''),
+  'https://minor-project-frontend-six.vercel.app',
+  'https://minor-project-frontend-git-main-garry-1380.vercel.app',
   'http://localhost:5173',
   'http://127.0.0.1:5173',
   'http://localhost:3000',
-  "https://minor-project-frontend-six.vercel.app"
-];
+].filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin) || origin.startsWith('http://localhost:')) {
+
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        origin.startsWith('http://localhost:');
+
+      if (isAllowed) {
         return callback(null, true);
       }
-      return callback(new Error(`CORS blocked for origin: ${origin}`));
+
+      console.error(`CORS blocked for origin: ${origin}`);
+      return callback(new Error('Origin not allowed by CORS'));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-CSRF-Token',
+    ],
   })
 );
+
+
 
 // Standard request body and cookie parsing
 app.use(express.json({ limit: '10mb' }));
